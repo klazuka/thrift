@@ -15,12 +15,8 @@
 		5309B969199F8E64002518F4 /* TTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B961199F8E64002518F4 /* TTransport.swift */; };
 		5309B96A199F8E64002518F4 /* TUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B962199F8E64002518F4 /* TUtility.swift */; };
 		5309B971199F8E8C002518F4 /* tutorial.thrift in Resources */ = {isa = PBXBuildFile; fileRef = 5309B96B199F8E8C002518F4 /* tutorial.thrift */; };
-		5309B972199F8E8C002518F4 /* BinaryProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B96C199F8E8C002518F4 /* BinaryProtocolTests.swift */; };
-		5309B973199F8E8C002518F4 /* ExampleGeneratedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B96D199F8E8C002518F4 /* ExampleGeneratedClass.swift */; };
-		5309B974199F8E8C002518F4 /* GeneratedCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B96E199F8E8C002518F4 /* GeneratedCodeTests.swift */; };
-		5309B975199F8E8C002518F4 /* GeneratedTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B96F199F8E8C002518F4 /* GeneratedTutorial.swift */; };
-		5309B976199F8E8C002518F4 /* UtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B970199F8E8C002518F4 /* UtilityTests.swift */; };
 		53597883199F9173007845F6 /* Thrift.h in Headers */ = {isa = PBXBuildFile; fileRef = 5309B946199F8CF0002518F4 /* Thrift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53597885199FF1FF007845F6 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53597884199FF1FF007845F6 /* Builder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +38,7 @@
 		5309B96E199F8E8C002518F4 /* GeneratedCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedCodeTests.swift; sourceTree = "<group>"; };
 		5309B96F199F8E8C002518F4 /* GeneratedTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedTutorial.swift; sourceTree = "<group>"; };
 		5309B970199F8E8C002518F4 /* UtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityTests.swift; sourceTree = "<group>"; };
+		53597884199FF1FF007845F6 /* Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,13 +120,14 @@
 		5309B95A199F8E64002518F4 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				5309B95F199F8E64002518F4 /* TProtocol.swift */,
 				5309B95C199F8E64002518F4 /* TBinaryProtocol.swift */,
 				5309B95D199F8E64002518F4 /* TException.swift */,
 				5309B95E199F8E64002518F4 /* TNSStreamTransport.swift */,
-				5309B95F199F8E64002518F4 /* TProtocol.swift */,
 				5309B960199F8E64002518F4 /* TSocketClient.swift */,
 				5309B961199F8E64002518F4 /* TTransport.swift */,
 				5309B962199F8E64002518F4 /* TUtility.swift */,
+				53597884199FF1FF007845F6 /* Builder.swift */,
 			);
 			name = src;
 			path = ../src;
@@ -249,6 +247,7 @@
 				5309B966199F8E64002518F4 /* TNSStreamTransport.swift in Sources */,
 				5309B969199F8E64002518F4 /* TTransport.swift in Sources */,
 				5309B964199F8E64002518F4 /* TBinaryProtocol.swift in Sources */,
+				53597885199FF1FF007845F6 /* Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,11 +255,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5309B976199F8E8C002518F4 /* UtilityTests.swift in Sources */,
-				5309B972199F8E8C002518F4 /* BinaryProtocolTests.swift in Sources */,
-				5309B975199F8E8C002518F4 /* GeneratedTutorial.swift in Sources */,
-				5309B973199F8E8C002518F4 /* ExampleGeneratedClass.swift in Sources */,
-				5309B974199F8E8C002518F4 /* GeneratedCodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
