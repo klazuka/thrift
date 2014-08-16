@@ -1,5 +1,33 @@
 import Foundation
 
+// RPC message types
+public enum TMessageType: UInt8 {
+    case Call = 1
+    case Reply = 2
+    case Exception = 3
+    case Oneway = 4
+}
+
+// element types
+public enum TType: UInt8 {
+    case Stop = 0
+    case Void = 1
+    case Bool = 2
+    case Byte = 3
+    case Double = 4
+    // skipped
+    case I16 = 6
+    // skipped
+    case I32 = 8
+    // skipped
+    case I64 = 10
+    case String = 11
+    case Struct = 12
+    case Map = 13
+    case Set = 14
+    case List = 15
+}
+
 public let RPC_RESULT_FIELD_ID: Int16 = 0
 
 public protocol TProtocol {
@@ -110,7 +138,10 @@ public func ==(lhs: Field, rhs: Field) -> Bool {
 }
 
 
-
+//TODO: this is VERY similar to the |read()| function on an object
+//      modulo actually using the read-data and setting it to
+//      the corresponding property. Is there a way to do this
+//      more generically?
 public func skip(thriftProtocol: TProtocol, elementType: TType) {
     let p = thriftProtocol
     switch elementType {
