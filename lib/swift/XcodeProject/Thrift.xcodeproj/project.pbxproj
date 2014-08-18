@@ -15,6 +15,9 @@
 		5359788919A00A79007845F6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5359788819A00A79007845F6 /* Box.swift */; };
 		5359788A19A00B0A007845F6 /* TTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B961199F8E64002518F4 /* TTransport.swift */; };
 		5359788D19A00D35007845F6 /* TTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5359788C19A00D35007845F6 /* TTypes.swift */; };
+		535978A319A22906007845F6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535978A119A22906007845F6 /* Result.swift */; };
+		535978A419A22906007845F6 /* TResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535978A219A22906007845F6 /* TResult.swift */; };
+		535978A719A22B1A007845F6 /* TBinaryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535978A619A22B1A007845F6 /* TBinaryProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +26,7 @@
 		5309B946199F8CF0002518F4 /* Thrift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thrift.h; sourceTree = "<group>"; };
 		5309B94C199F8CF0002518F4 /* ThriftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThriftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5309B94F199F8CF0002518F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5309B95C199F8E64002518F4 /* TBinaryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBinaryProtocol.swift; sourceTree = "<group>"; };
+		5309B95C199F8E64002518F4 /* old_TBinaryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = old_TBinaryProtocol.swift; sourceTree = "<group>"; };
 		5309B95D199F8E64002518F4 /* TException.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TException.swift; sourceTree = "<group>"; };
 		5309B95E199F8E64002518F4 /* TNSStreamTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TNSStreamTransport.swift; sourceTree = "<group>"; };
 		5309B95F199F8E64002518F4 /* TProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TProtocol.swift; sourceTree = "<group>"; };
@@ -40,6 +43,9 @@
 		5359788619A00A36007845F6 /* old_protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = old_protocol.swift; sourceTree = "<group>"; };
 		5359788819A00A79007845F6 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		5359788C19A00D35007845F6 /* TTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TTypes.swift; sourceTree = "<group>"; };
+		535978A119A22906007845F6 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		535978A219A22906007845F6 /* TResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TResult.swift; sourceTree = "<group>"; };
+		535978A619A22B1A007845F6 /* TBinaryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBinaryProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,9 +131,9 @@
 				5309B961199F8E64002518F4 /* TTransport.swift */,
 				5309B962199F8E64002518F4 /* TUtility.swift */,
 				5309B95F199F8E64002518F4 /* TProtocol.swift */,
+				535978A619A22B1A007845F6 /* TBinaryProtocol.swift */,
 				5359788C19A00D35007845F6 /* TTypes.swift */,
-				53597884199FF1FF007845F6 /* Builder.swift */,
-				5359788819A00A79007845F6 /* Box.swift */,
+				535978A519A22A06007845F6 /* functional tools */,
 			);
 			name = src;
 			path = ../src;
@@ -137,12 +143,23 @@
 			isa = PBXGroup;
 			children = (
 				5359788619A00A36007845F6 /* old_protocol.swift */,
-				5309B95C199F8E64002518F4 /* TBinaryProtocol.swift */,
+				5309B95C199F8E64002518F4 /* old_TBinaryProtocol.swift */,
 				5309B95D199F8E64002518F4 /* TException.swift */,
 				5309B95E199F8E64002518F4 /* TNSStreamTransport.swift */,
 				5309B960199F8E64002518F4 /* TSocketClient.swift */,
 			);
 			name = old;
+			sourceTree = "<group>";
+		};
+		535978A519A22A06007845F6 /* functional tools */ = {
+			isa = PBXGroup;
+			children = (
+				53597884199FF1FF007845F6 /* Builder.swift */,
+				5359788819A00A79007845F6 /* Box.swift */,
+				535978A119A22906007845F6 /* Result.swift */,
+				535978A219A22906007845F6 /* TResult.swift */,
+			);
+			name = "functional tools";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,9 +272,12 @@
 				5359788919A00A79007845F6 /* Box.swift in Sources */,
 				5309B967199F8E64002518F4 /* TProtocol.swift in Sources */,
 				5359788D19A00D35007845F6 /* TTypes.swift in Sources */,
+				535978A419A22906007845F6 /* TResult.swift in Sources */,
 				5309B96A199F8E64002518F4 /* TUtility.swift in Sources */,
+				535978A319A22906007845F6 /* Result.swift in Sources */,
 				53597885199FF1FF007845F6 /* Builder.swift in Sources */,
 				5359788A19A00B0A007845F6 /* TTransport.swift in Sources */,
+				535978A719A22B1A007845F6 /* TBinaryProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

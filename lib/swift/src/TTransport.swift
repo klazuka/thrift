@@ -2,8 +2,8 @@ import Foundation
 
 
 public protocol TTransport {
-    func read(numBytes: Int) -> [UInt8]
-    func write(bytes: [UInt8])
+    func read(numBytes: Int) -> Result<[UInt8]>
+    func write(bytes: [UInt8]) -> Result<Void>
     func flush()
 }
 

@@ -5,156 +5,99 @@ public let RPC_RESULT_FIELD_ID: Int16 = 0
 public protocol TProtocol {
     var transport: TTransport { get }
     
-    //MARK: RPC methods
+    func writeMessageBegin(header: MessageHeader) -> Result<Void>
+    func readMessageBegin() -> Result<MessageHeader>
     
-    func readMessageBegin() -> MessageHeader
-    func writeMessageBegin(header: MessageHeader)
+    func serializeValue(val: TValue) -> NSData
+    func deserializeValue(type: TType, buf: NSData) -> TValue
     
-    func readMessageEnd()
-    func writeMessageEnd()
-    
-    //MARK: Struct & Field methods
-    
-    func readStructBegin() -> String?
-    func writeStructBegin(name: String)
-    
-    func readStructEnd()
-    func writeStructEnd()
-    
-    func readFieldBegin() -> Field
-    func writeFieldBegin(name: String, type: TType, id: Int16)
-    
-    func readFieldEnd()
-    func writeFieldEnd()
-    
-    // this is the only protocol method without a 'read' counterpart
-    func writeFieldStop()
-    
-    //MARK: basic Thrift types
-    
-    func readBool() -> Bool
-    func writeBool(b: Bool)
-    
-    func readByte() -> UInt8
-    func writeByte(k: UInt8)
-    
-    func readI16() -> Int16
-    func writeI16(k: Int16)
-    
-    func readI32() -> Int32
-    func writeI32(k: Int32)
-    
-    func readI64() -> Int64
-    func writeI64(k: Int64)
-    
-    func readDouble() -> Double
-    func writeDouble(x: Double)
-    
-    func readString() -> String
-    func writeString(str: String)
-    
-    func readBinary() -> NSData
-    func writeBinary(data: NSData)
-    
-    //MARK: collection Thrift types
-    
-    func readListBegin() -> (elementType: TType, count: Int)
-    func writeListBegin(elementType: TType, count: Int)
-    func readListEnd()
-    func writeListEnd()
-    
-    func readSetBegin() -> (elementType: TType, count: Int);
-    func writeSetBegin(elementType: TType, count: Int);
-    func readSetEnd()
-    func writeSetEnd()
-    
-    func readMapBegin() -> (keyType: TType, valueType: TType, count: Int)
-    func writeMapBegin(keyType: TType, valueType: TType, count: Int)
-    func readMapEnd()
-    func writeMapEnd()
+    func writeValue(val: TValue) -> Result<Void>
+    func readValue(type: TType) -> Result<TValue>
 }
 
 //MARK: -
 
-public struct MessageHeader {
-    public var name: String
-    public var type: TMessageType
-    public var sequenceID: Int32
-    
-    public init(name: String, type: TMessageType, sequenceID: Int32) {
-        self.name = name
-        self.type = type
-        self.sequenceID = sequenceID
-    }
-}
+public typealias MessageHeader = (name: String, type: TMessageType, sequenceID: Int32)
+
+//public struct MessageHeader {
+//    public var name: String
+//    public var type: TMessageType
+//    public var sequenceID: Int32
+//    
+//    public init(name: String, type: TMessageType, sequenceID: Int32) {
+//        self.name = name
+//        self.type = type
+//        self.sequenceID = sequenceID
+//    }
+//}
 
 //MARK: -
 
-public enum Field: Equatable {
-    case Stop
-    case Data(name: String?, type: TType, id: Int16)
-}
+//public enum Field: Equatable {
+//    case Stop
+//    case Data(name: String?, type: TType, id: Int16)
+//}
+//
+//public func ==(lhs: Field, rhs: Field) -> Bool {
+//    switch (lhs, rhs) {
+//    case (.Stop, .Stop):
+//        return true
+//    case (.Data(let lhsName, let lhsType, let lhsID), .Data(let rhsName, let rhsType, let rhsID))
+//        where lhsName == rhsName &&
+//            lhsType == rhsType &&
+//            lhsID == rhsID:
+//        return true
+//    default:
+//        return false
+//    }
+//}
 
-public func ==(lhs: Field, rhs: Field) -> Bool {
-    switch (lhs, rhs) {
-    case (.Stop, .Stop):
-        return true
-    case (.Data(let lhsName, let lhsType, let lhsID), .Data(let rhsName, let rhsType, let rhsID))
-        where lhsName == rhsName &&
-            lhsType == rhsType &&
-            lhsID == rhsID:
-        return true
-    default:
-        return false
-    }
-}
 
-
-
-public func skip(thriftProtocol: TProtocol, elementType: TType) {
-    let p = thriftProtocol
-    switch elementType {
-    case .Bool:   p.readBool()
-    case .Byte:   p.readByte()
-    case .I16:    p.readI16()
-    case .I32:    p.readI32()
-    case .I64:    p.readI64()
-    case .Double: p.readDouble()
-    case .String: p.readString()
-    case .Struct:
-        p.readStructBegin()
-        var done = false
-        while !done {
-            switch p.readFieldBegin() {
-            case .Stop: done = true
-            case let .Data(name: _, type: elementType, id: _):
-                skip(p, elementType)
-                p.readFieldEnd()
-            }
-        }
-        p.readStructEnd()
-    case .List:
-        let (listElementType, listCount) = p.readListBegin()
-        for _ in 1...listCount {
-            skip(p, listElementType)
-        }
-        p.readListEnd()
-    case .Set:
-        let (setElementType, setCount) = p.readSetBegin()
-        for _ in 1...setCount {
-            skip(p, setElementType)
-        }
-        p.readSetEnd()
-    case .Map:
-        let (keyType, valueType, entryCount) = p.readMapBegin()
-        for _ in 1...entryCount {
-            skip(p, keyType)
-            skip(p, valueType)
-        }
-        p.readMapEnd()
-    case .Stop:
-        fatalError("protocol violation, cannot skip a stop field")
-    case .Void:
-        fatalError("protocol violation, cannot skip a void field")
-    }
-}
+// TODO: this can be re-made into the parseBinaryValue function
+//public func skip(thriftProtocol: TProtocol, elementType: TType) {
+//    let p = thriftProtocol
+//    switch elementType {
+//    case .Bool:   p.readBool()
+//    case .Byte:   p.readByte()
+//    case .I16:    p.readI16()
+//    case .I32:    p.readI32()
+//    case .I64:    p.readI64()
+//    case .Double: p.readDouble()
+//    case .String: p.readString()
+//    case .Struct:
+//        p.readStructBegin()
+//        var done = false
+//        while !done {
+//            switch p.readFieldBegin() {
+//            case .Stop: done = true
+//            case let .Data(name: _, type: elementType, id: _):
+//                skip(p, elementType)
+//                p.readFieldEnd()
+//            }
+//        }
+//        p.readStructEnd()
+//    case .List:
+//        let (listElementType, listCount) = p.readListBegin()
+//        for _ in 1...listCount {
+//            skip(p, listElementType)
+//        }
+//        p.readListEnd()
+//    case .Set:
+//        let (setElementType, setCount) = p.readSetBegin()
+//        for _ in 1...setCount {
+//            skip(p, setElementType)
+//        }
+//        p.readSetEnd()
+//    case .Map:
+//        let (keyType, valueType, entryCount) = p.readMapBegin()
+//        for _ in 1...entryCount {
+//            skip(p, keyType)
+//            skip(p, valueType)
+//        }
+//        p.readMapEnd()
+//    case .Stop:
+//        fatalError("protocol violation, cannot skip a stop field")
+//    case .Void:
+//        fatalError("protocol violation, cannot skip a void field")
+//    }
+//}
