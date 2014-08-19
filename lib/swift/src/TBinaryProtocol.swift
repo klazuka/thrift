@@ -49,9 +49,37 @@ public class TBinaryProtocol: TProtocol {
             let utf8 = x.utf8
             return buildInt32BE(Int32(countElements(utf8))) <>
                    buildBytes(Array(utf8))
+        case let ._List(type, values):
+            return buildThriftType(type) <>
+                   buildInt32BE(Int32(values.count)) <>
+                   buildBinaryList(values)
+        case let ._Map(keyType, valueType, alist):
+            return buildThriftType(keyType) <>
+                   buildThriftType(valueType) <>
+                   buildInt32BE(Int32(alist.count)) <>
+                   buildBinaryMap(alist)
         default:
             fatalError("not yet implemented")
         }
+    }
+    
+    func buildThriftType(type: TType) -> Builder {
+        return buildByte(type.toRaw())
+    }
+    
+    func buildBinaryList(values: [TValue]) -> Builder {
+        let f = { mappend(self.buildBinaryValue($0), $1) }
+        return foldr(f, mempty(), values)
+    }
+    
+    func buildBinaryMap(alist: [(TValue, TValue)]) -> Builder {
+        // the closure's parameters are annotated because
+        // type inference blows-up otherwise
+        let f = { (acc:Builder, pair:(TValue,TValue)) -> Builder in
+            let (key, val) = pair
+            return acc <> self.buildBinaryValue(key) <> self.buildBinaryValue(val)
+        }
+        return foldl(f, mempty(), alist)
     }
 }
 

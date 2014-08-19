@@ -1,11 +1,3 @@
-//
-//  Builder.swift
-//  Thrift
-//
-//  Created by Keith Lazuka on 8/16/14.
-//  Copyright (c) 2014 Acompli. All rights reserved.
-//
-
 import Foundation
 
 let DEFAULT_CHUNK_SIZE = 4096
@@ -17,7 +9,6 @@ enum BuildSignal {
 }
 
 typealias Builder = NSMutableData -> BuildSignal
-
 
 func toNSData(b: Builder) -> NSData {
     let buf = NSMutableData(capacity: DEFAULT_CHUNK_SIZE)
@@ -39,13 +30,23 @@ func run(b: Builder, buf: NSMutableData) -> NSData {
     }
 }
 
-infix operator <> { associativity right }
-func <>(lhs: Builder, rhs: Builder) -> Builder {
+//MARK:- Monoid
+
+func mempty() -> Builder {
+    return { buf in .Done }
+}
+
+func mappend(a: Builder, b: Builder) -> Builder {
     return { buf in
-        run(rhs, buf)
-        run(lhs, buf)
+        run(a, buf)
+        run(b, buf)
         return .Done
     }
+}
+
+infix operator <> { associativity right }
+func <>(lhs: Builder, rhs: Builder) -> Builder {
+    return mappend(lhs, rhs)
 }
 
 //MARK:- fixed primitive builders

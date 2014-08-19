@@ -18,6 +18,7 @@
 		535978A319A22906007845F6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535978A119A22906007845F6 /* Result.swift */; };
 		535978A419A22906007845F6 /* TResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535978A219A22906007845F6 /* TResult.swift */; };
 		535978A719A22B1A007845F6 /* TBinaryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535978A619A22B1A007845F6 /* TBinaryProtocol.swift */; };
+		5389D1CC19A379F900DFFDCB /* FP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5389D1CB19A379F900DFFDCB /* FP.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		535978A119A22906007845F6 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		535978A219A22906007845F6 /* TResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TResult.swift; sourceTree = "<group>"; };
 		535978A619A22B1A007845F6 /* TBinaryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBinaryProtocol.swift; sourceTree = "<group>"; };
+		5389D1CB19A379F900DFFDCB /* FP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FP.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		535978A519A22A06007845F6 /* functional tools */ = {
 			isa = PBXGroup;
 			children = (
+				5389D1CB19A379F900DFFDCB /* FP.swift */,
 				53597884199FF1FF007845F6 /* Builder.swift */,
 				5359788819A00A79007845F6 /* Box.swift */,
 				535978A119A22906007845F6 /* Result.swift */,
@@ -272,6 +275,7 @@
 				5359788919A00A79007845F6 /* Box.swift in Sources */,
 				5309B967199F8E64002518F4 /* TProtocol.swift in Sources */,
 				5359788D19A00D35007845F6 /* TTypes.swift in Sources */,
+				5389D1CC19A379F900DFFDCB /* FP.swift in Sources */,
 				535978A419A22906007845F6 /* TResult.swift in Sources */,
 				5309B96A199F8E64002518F4 /* TUtility.swift in Sources */,
 				535978A319A22906007845F6 /* Result.swift in Sources */,
