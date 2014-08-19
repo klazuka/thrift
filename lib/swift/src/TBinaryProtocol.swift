@@ -58,6 +58,9 @@ public class TBinaryProtocol: TProtocol {
                    buildThriftType(valueType) <>
                    buildInt32BE(Int32(alist.count)) <>
                    buildBinaryMap(alist)
+        case let ._Struct(dict):
+            return buildBinaryStruct(dict) <>
+                   buildByte(TType.Stop.toRaw())
         default:
             fatalError("not yet implemented")
         }
@@ -65,6 +68,10 @@ public class TBinaryProtocol: TProtocol {
     
     func buildThriftType(type: TType) -> Builder {
         return buildByte(type.toRaw())
+    }
+    
+    func buildThriftTypeOf(value: TValue) -> Builder {
+        return buildThriftType(value.thriftType())
     }
     
     func buildBinaryList(values: [TValue]) -> Builder {
@@ -80,6 +87,18 @@ public class TBinaryProtocol: TProtocol {
             return acc <> self.buildBinaryValue(key) <> self.buildBinaryValue(val)
         }
         return foldl(f, mempty(), alist)
+    }
+    
+    func buildBinaryStruct(dict: [Int16: (String, TValue)]) -> Builder {
+        var acc = mempty()
+        for (fieldID, pair) in dict {
+            let (_, value) = pair
+            acc = acc <>
+                  buildThriftTypeOf(value) <>
+                  buildInt16BE(fieldID) <>
+                  buildBinaryValue(value)
+        }
+        return acc
     }
 }
 

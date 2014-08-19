@@ -22,6 +22,22 @@ public enum TValue {
     case _Map(keyType: TType, valueType: TType, assoc: [(TValue,TValue)])
     case _Set(valueType: TType, array: [TValue])
     case _List(valueType: TType, array: [TValue])
+    
+    func thriftType() -> TType {
+        switch self {
+        case _Bool: return TType.Bool
+        case _Byte: return TType.Byte
+        case _Double: return TType.Double
+        case _I16: return TType.I16
+        case _I32: return TType.I32
+        case _I64: return TType.I64
+        case _String: return TType.String
+        case _Struct(_): return TType.Struct([:])
+        case _Map(_,_,_): return TType.Map(keyType: Box(TType.Void), valueType: Box(TType.Void))
+        case _Set(_): return TType.Set(valueType: Box(TType.Void))
+        case _List(_): return TType.List(valueType: Box(TType.Void))
+        }
+    }
 }
 
 // a mapping from a struct's fields' names to a pair of fieldID and Thrift value
@@ -88,6 +104,8 @@ public enum TType: RawRepresentable, Equatable {
         }
     }
 }
+
+let dummyTType = Box(TType.Void)
 
 // NOTE: equality for thrift types only considers outer equality
 // that is, it ignores the type of the contained elements.
