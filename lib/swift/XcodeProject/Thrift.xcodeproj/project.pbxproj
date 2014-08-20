@@ -10,6 +10,9 @@
 		5309B967199F8E64002518F4 /* TProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B95F199F8E64002518F4 /* TProtocol.swift */; };
 		5309B96A199F8E64002518F4 /* TUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B962199F8E64002518F4 /* TUtility.swift */; };
 		5309B971199F8E8C002518F4 /* tutorial.thrift in Resources */ = {isa = PBXBuildFile; fileRef = 5309B96B199F8E8C002518F4 /* tutorial.thrift */; };
+		5342A49619A4D004006017B6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342A49519A4D004006017B6 /* main.swift */; };
+		5342A49C19A4D158006017B6 /* HandGen1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B96D199F8E8C002518F4 /* HandGen1.swift */; };
+		5342A49D19A4D15C006017B6 /* HandGen1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B96D199F8E8C002518F4 /* HandGen1.swift */; };
 		53597883199F9173007845F6 /* Thrift.h in Headers */ = {isa = PBXBuildFile; fileRef = 5309B946199F8CF0002518F4 /* Thrift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53597885199FF1FF007845F6 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53597884199FF1FF007845F6 /* Builder.swift */; };
 		5359788919A00A79007845F6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5359788819A00A79007845F6 /* Box.swift */; };
@@ -20,6 +23,28 @@
 		535978A719A22B1A007845F6 /* TBinaryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535978A619A22B1A007845F6 /* TBinaryProtocol.swift */; };
 		5389D1CC19A379F900DFFDCB /* FP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5389D1CB19A379F900DFFDCB /* FP.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5342A49A19A4D018006017B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5309B938199F8CF0002518F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5309B940199F8CF0002518F4;
+			remoteInfo = Thrift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5342A49119A4D004006017B6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5309B941199F8CF0002518F4 /* Thrift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Thrift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,10 +61,12 @@
 		5309B962199F8E64002518F4 /* TUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUtility.swift; sourceTree = "<group>"; };
 		5309B96B199F8E8C002518F4 /* tutorial.thrift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial.thrift; sourceTree = "<group>"; };
 		5309B96C199F8E8C002518F4 /* BinaryProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryProtocolTests.swift; sourceTree = "<group>"; };
-		5309B96D199F8E8C002518F4 /* ExampleGeneratedClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleGeneratedClass.swift; sourceTree = "<group>"; };
+		5309B96D199F8E8C002518F4 /* HandGen1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandGen1.swift; sourceTree = "<group>"; };
 		5309B96E199F8E8C002518F4 /* GeneratedCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedCodeTests.swift; sourceTree = "<group>"; };
 		5309B96F199F8E8C002518F4 /* GeneratedTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedTutorial.swift; sourceTree = "<group>"; };
 		5309B970199F8E8C002518F4 /* UtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityTests.swift; sourceTree = "<group>"; };
+		5342A49319A4D004006017B6 /* ThriftCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ThriftCLI; sourceTree = BUILT_PRODUCTS_DIR; };
+		5342A49519A4D004006017B6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		53597884199FF1FF007845F6 /* Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		5359788619A00A36007845F6 /* old_protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = old_protocol.swift; sourceTree = "<group>"; };
 		5359788819A00A79007845F6 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
@@ -65,6 +92,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5342A49019A4D004006017B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -74,6 +108,7 @@
 				5309B95A199F8E64002518F4 /* src */,
 				5309B943199F8CF0002518F4 /* Thrift */,
 				5309B94D199F8CF0002518F4 /* ThriftTests */,
+				5342A49419A4D004006017B6 /* ThriftCLI */,
 				5309B942199F8CF0002518F4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +118,7 @@
 			children = (
 				5309B941199F8CF0002518F4 /* Thrift.framework */,
 				5309B94C199F8CF0002518F4 /* ThriftTests.xctest */,
+				5342A49319A4D004006017B6 /* ThriftCLI */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,7 +145,7 @@
 			children = (
 				5309B96B199F8E8C002518F4 /* tutorial.thrift */,
 				5309B96C199F8E8C002518F4 /* BinaryProtocolTests.swift */,
-				5309B96D199F8E8C002518F4 /* ExampleGeneratedClass.swift */,
+				5309B96D199F8E8C002518F4 /* HandGen1.swift */,
 				5309B96E199F8E8C002518F4 /* GeneratedCodeTests.swift */,
 				5309B96F199F8E8C002518F4 /* GeneratedTutorial.swift */,
 				5309B970199F8E8C002518F4 /* UtilityTests.swift */,
@@ -139,6 +175,14 @@
 			);
 			name = src;
 			path = ../src;
+			sourceTree = "<group>";
+		};
+		5342A49419A4D004006017B6 /* ThriftCLI */ = {
+			isa = PBXGroup;
+			children = (
+				5342A49519A4D004006017B6 /* main.swift */,
+			);
+			path = ThriftCLI;
 			sourceTree = "<group>";
 		};
 		5359788B19A00B2C007845F6 /* old */ = {
@@ -214,6 +258,24 @@
 			productReference = 5309B94C199F8CF0002518F4 /* ThriftTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5342A49219A4D004006017B6 /* ThriftCLI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5342A49919A4D004006017B6 /* Build configuration list for PBXNativeTarget "ThriftCLI" */;
+			buildPhases = (
+				5342A48F19A4D004006017B6 /* Sources */,
+				5342A49019A4D004006017B6 /* Frameworks */,
+				5342A49119A4D004006017B6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5342A49B19A4D018006017B6 /* PBXTargetDependency */,
+			);
+			name = ThriftCLI;
+			productName = ThriftCLI;
+			productReference = 5342A49319A4D004006017B6 /* ThriftCLI */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -227,6 +289,9 @@
 						CreatedOnToolsVersion = 6.0;
 					};
 					5309B94B199F8CF0002518F4 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					5342A49219A4D004006017B6 = {
 						CreatedOnToolsVersion = 6.0;
 					};
 				};
@@ -245,6 +310,7 @@
 			targets = (
 				5309B940199F8CF0002518F4 /* Thrift */,
 				5309B94B199F8CF0002518F4 /* ThriftTests */,
+				5342A49219A4D004006017B6 /* ThriftCLI */,
 			);
 		};
 /* End PBXProject section */
@@ -289,10 +355,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5342A49C19A4D158006017B6 /* HandGen1.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5342A48F19A4D004006017B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5342A49619A4D004006017B6 /* main.swift in Sources */,
+				5342A49D19A4D15C006017B6 /* HandGen1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5342A49B19A4D018006017B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5309B940199F8CF0002518F4 /* Thrift */;
+			targetProxy = 5342A49A19A4D018006017B6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5309B952199F8CF0002518F4 /* Debug */ = {
@@ -444,6 +528,24 @@
 			};
 			name = Release;
 		};
+		5342A49719A4D004006017B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5342A49819A4D004006017B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,6 +575,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5342A49919A4D004006017B6 /* Build configuration list for PBXNativeTarget "ThriftCLI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5342A49719A4D004006017B6 /* Debug */,
+				5342A49819A4D004006017B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

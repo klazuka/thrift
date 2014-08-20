@@ -7,6 +7,12 @@ public enum TMessageType: UInt8 {
     case Oneway = 4
 }
 
+// a mapping from a struct's field IDs to a pair of field name (if known) and Thrift value
+public typealias TFieldMapByID = [Int16: (String,TValue)]
+
+// a mapping from a struct's fields' names to a pair of fieldID and Thrift value
+public typealias TFieldMapByName = [String: (Int16, TValue)]
+
 // Thrift values
 public enum TValue {
     // these names are prefixed with underscores because the compiler
@@ -18,7 +24,7 @@ public enum TValue {
     case _I32(Int32)
     case _I64(Int64)
     case _String(String)
-    case _Struct([Int16:(String,TValue)])
+    case _Struct(TFieldMapByID)
     case _Map(keyType: TType, valueType: TType, assoc: [(TValue,TValue)])
     case _Set(valueType: TType, array: [TValue])
     case _List(valueType: TType, array: [TValue])
@@ -34,14 +40,11 @@ public enum TValue {
         case _String: return TType.String
         case _Struct(_): return TType.Struct([:])
         case _Map(_,_,_): return TType.Map(keyType: Box(TType.Void), valueType: Box(TType.Void))
-        case _Set(_): return TType.Set(valueType: Box(TType.Void))
-        case _List(_): return TType.List(valueType: Box(TType.Void))
+        case _Set(_): return TType.Set(Box(TType.Void))
+        case _List(_): return TType.List(Box(TType.Void))
         }
     }
 }
-
-// a mapping from a struct's fields' names to a pair of fieldID and Thrift value
-public typealias TFieldMap = [String: (Int16, TValue)]
 
 // Thrift value types
 public enum TType: RawRepresentable, Equatable {
@@ -54,10 +57,10 @@ public enum TType: RawRepresentable, Equatable {
     case I32
     case I64
     case String
-    case Struct(TFieldMap)
+    case Struct(TFieldMapByName)
     case Map(keyType: Box<TType>, valueType: Box<TType>)
-    case Set(valueType: Box<TType>)
-    case List(valueType: Box<TType>)
+    case Set(Box<TType>)
+    case List(Box<TType>)
     
     // implement the raw protocol explicitly because the compiler
     // cannot synthesize it for enums with associated values
@@ -98,8 +101,8 @@ public enum TType: RawRepresentable, Equatable {
         case 11: return .String
         case 12: return .Struct([:])
         case 13: return .Map(keyType: Box(.Void), valueType: Box(.Void))
-        case 14: return .Set(valueType: Box(.Void))
-        case 15: return .List(valueType: Box(.Void))
+        case 14: return .Set(Box(.Void))
+        case 15: return .List(Box(.Void))
         default: return nil
         }
     }
