@@ -74,8 +74,8 @@ public struct Foo {
         var map: TFieldMapByID = [:]
         if aIsSet { map[1] = ("a", TValue._I32(a)) }
         if bIsSet { map[2] = ("b", TValue._I32(b)) }
-        if cIsSet { map[3] = ("c", TValue._I32(c!)) }
-        if dIsSet { map[4] = ("d", TValue._I32(d!)) }
+        if cIsSet && c != nil { map[3] = ("c", TValue._I32(c!)) }
+        if dIsSet && d != nil { map[4] = ("d", TValue._I32(d!)) }
         if eIsSet { map[5] = ("e",
             TValue._List(valueType: TType.String, array: e.map({ TValue._String($0)})))
         }

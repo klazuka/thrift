@@ -13,6 +13,7 @@
 		5342A49619A4D004006017B6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5342A49519A4D004006017B6 /* main.swift */; };
 		5342A49C19A4D158006017B6 /* HandGen1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B96D199F8E8C002518F4 /* HandGen1.swift */; };
 		5342A49D19A4D15C006017B6 /* HandGen1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B96D199F8E8C002518F4 /* HandGen1.swift */; };
+		5342A49E19A4DAC7006017B6 /* HandGen1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5309B96E199F8E8C002518F4 /* HandGen1Tests.swift */; };
 		53597883199F9173007845F6 /* Thrift.h in Headers */ = {isa = PBXBuildFile; fileRef = 5309B946199F8CF0002518F4 /* Thrift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53597885199FF1FF007845F6 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53597884199FF1FF007845F6 /* Builder.swift */; };
 		5359788919A00A79007845F6 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5359788819A00A79007845F6 /* Box.swift */; };
@@ -62,7 +63,7 @@
 		5309B96B199F8E8C002518F4 /* tutorial.thrift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial.thrift; sourceTree = "<group>"; };
 		5309B96C199F8E8C002518F4 /* BinaryProtocolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryProtocolTests.swift; sourceTree = "<group>"; };
 		5309B96D199F8E8C002518F4 /* HandGen1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandGen1.swift; sourceTree = "<group>"; };
-		5309B96E199F8E8C002518F4 /* GeneratedCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedCodeTests.swift; sourceTree = "<group>"; };
+		5309B96E199F8E8C002518F4 /* HandGen1Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandGen1Tests.swift; sourceTree = "<group>"; };
 		5309B96F199F8E8C002518F4 /* GeneratedTutorial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedTutorial.swift; sourceTree = "<group>"; };
 		5309B970199F8E8C002518F4 /* UtilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityTests.swift; sourceTree = "<group>"; };
 		5342A49319A4D004006017B6 /* ThriftCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ThriftCLI; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,7 +147,7 @@
 				5309B96B199F8E8C002518F4 /* tutorial.thrift */,
 				5309B96C199F8E8C002518F4 /* BinaryProtocolTests.swift */,
 				5309B96D199F8E8C002518F4 /* HandGen1.swift */,
-				5309B96E199F8E8C002518F4 /* GeneratedCodeTests.swift */,
+				5309B96E199F8E8C002518F4 /* HandGen1Tests.swift */,
 				5309B96F199F8E8C002518F4 /* GeneratedTutorial.swift */,
 				5309B970199F8E8C002518F4 /* UtilityTests.swift */,
 				5309B94E199F8CF0002518F4 /* Supporting Files */,
@@ -356,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5342A49C19A4D158006017B6 /* HandGen1.swift in Sources */,
+				5342A49E19A4DAC7006017B6 /* HandGen1Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
