@@ -20,14 +20,22 @@ struct Parser<R> {
 // The input is always assumed to be of type `ByteString`
 // `R` is the type of the parsed result (e.g. a UInt32)
 enum ParseResult<R> {
-    case Done(R, ByteString)
     case Fail(ByteString)
+    case Done(R, ByteString)
 //    case Partial(ByteString -> ParseResult<R>)
-    
-    func isFailed() -> Bool {
-        switch self {
-        case .Done: return false
-        case .Fail: return true
+}
+
+infix operator <^> { associativity left }
+func <^><VA, VB>(f: VA -> VB, a: Parser<VA>) -> Parser<VB> {
+    return fmapr(a, f)
+}
+
+// reversed fmap argument order
+func fmapr<VA, VB>(a: Parser<VA>, f: VA -> VB) -> Parser<VB> {
+    return Parser { s in
+        switch run(a, s) {
+        case let .Done(r, rest): return .Done(f(r), rest)
+        case let .Fail(rest): return .Fail(rest)
         }
     }
 }

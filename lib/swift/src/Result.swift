@@ -62,7 +62,7 @@ public func pure<V>(a: V) -> Result<V> {
 }
 
 
-infix operator <^> {}
+infix operator <^> { associativity left }
 func <^><VA, VB>(f: VA -> VB, a: Result<VA>) -> Result<VB> {
     switch a {
     case let .Error(l): return .Error(l)

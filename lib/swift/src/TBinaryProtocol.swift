@@ -107,7 +107,8 @@ public class TBinaryProtocol: TProtocol {
 
 func parseBinaryValue(type: TType, bytes: [UInt8]) -> Parser<TValue> {
   switch type {
-//  case TType.Bool: parseByte(b) <^> { $0 == 1 }
+  case TType.Bool: return fmapr(parseAnyUInt8()) { TValue._Bool($0 == 1) }
+//  case TType.Bool: { b in return b == 1 } <^> parseAnyUInt8()
     
 //  case let ._Byte(x): return buildByte(x)
 //  case let ._Bool(x): return buildByte(x ? 1 : 0)
