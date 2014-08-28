@@ -18,13 +18,25 @@ struct Parser<R> {
 }
 
 // The input is always assumed to be of type `ByteString`
-// `R` is the type of the parsed result (e.g. a UInt32)
+// `R` is the type of the parsed result (e.g. a UInt32).
+// We must box the generic type variable to avoid an internal
+// assertion failure in the Swift code generator (as of Xcode6-Beta6)
 enum ParseResult<R> {
+    case Done(Box<R>, ByteString)
     case Fail(ByteString)
-    case Done(R, ByteString)
 //    case Partial(ByteString -> ParseResult<R>)
 }
 
+// convenience constructors to hide the boxing
+private func pdone<R>(r: R, b: ByteString) -> ParseResult<R> {
+    return ParseResult.Done(Box(r), b)
+}
+private func pfail<R>(b: ByteString) -> ParseResult<R> {
+    return ParseResult.Fail(b)
+}
+
+
+// functor map
 infix operator <^> { associativity left }
 func <^><VA, VB>(f: VA -> VB, a: Parser<VA>) -> Parser<VB> {
     return fmapr(a, f)
@@ -34,8 +46,8 @@ func <^><VA, VB>(f: VA -> VB, a: Parser<VA>) -> Parser<VB> {
 func fmapr<VA, VB>(a: Parser<VA>, f: VA -> VB) -> Parser<VB> {
     return Parser { s in
         switch run(a, s) {
-        case let .Done(r, rest): return .Done(f(r), rest)
-        case let .Fail(rest): return .Fail(rest)
+        case let .Done(r, rest): return pdone(f(r.value), rest)
+        case let .Fail(rest): return pfail(rest)
         }
     }
 }
@@ -99,15 +111,15 @@ func many1<A>(parser: Parser<A>) -> Parser<[A]> {
             case let .Fail(x):
                 break loop
             case let .Done(a, s2):
-                list.append(a)
+                list.append(a.value)
                 remainingInput = s2
             }
         }
         
         if list.count == 0 {
-            return .Fail(s)
+            return pfail(s)
         } else {
-            return .Done(list, remainingInput)
+            return pdone(list, remainingInput)
         }
     }
 }
@@ -119,7 +131,7 @@ func manyTill<A,B>(parser: Parser<A>, tillParser: Parser<B>) -> Parser<[A]> {
         case .Fail(let x):
             return run(many1(parser) <<- tillParser, s)
         case .Done(_, let s2):
-            return .Done([A](), s2)
+            return pdone([A](), s2)
         }
     }
 }
@@ -129,20 +141,20 @@ func manyTill<A,B>(parser: Parser<A>, tillParser: Parser<B>) -> Parser<[A]> {
 func parseAnyUInt8() -> Parser<UInt8> {
     return Parser { s in
         if let head = s.first {
-            return .Done(head, s[1..<s.count])
+            return pdone(head, s[1..<s.count])
         } else {
-            return .Fail(s)
+            return pfail(s)
         }
     }
 }
 
 //TODO: find a cleaner way to do this with less code duplication
 func parseUInt8(byte: UInt8) -> Parser<UInt8?> {
-    return Parser { s in
+    return Parser { (s: Slice<UInt8>) in
         if let head = s.first {
-            return head == byte ? .Done(head, s[1..<s.count]) : .Fail(s)
+            return head == byte ? pdone(head, s[1..<s.count]) : pfail(s)
         } else {
-            return .Fail(s)
+            return pfail(s)
         }
     }
 }
@@ -150,9 +162,9 @@ func parseUInt8(byte: UInt8) -> Parser<UInt8?> {
 func parseTake(n: Int) -> Parser<ByteString> {
     return Parser { s in
         if s.count >= n {
-            return .Done(s[0..<n], s[n..<s.count])
+            return pdone(s[0..<n], s[n..<s.count])
         } else {
-            return .Fail(s)
+            return pfail(s)
         }
     }
 }
