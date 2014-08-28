@@ -26,7 +26,13 @@ public class TBinaryProtocol: TProtocol {
         return toNSData(buildBinaryValue(val))
     }
     public func deserializeValue(type: TType, buf: NSData) -> TValue {
-        fatalError("implement me")
+        // TODO: no copy
+        var bs = [UInt8](count: buf.length, repeatedValue: 0)
+        buf.getBytes(&bs, length: bs.count)
+        switch run(parseBinaryValue(type), Slice(bs)) {
+        case .Fail(_): fatalError("failed to parse value")
+        case .Done(let a, _): return a.value
+        }
     }
     
     public func writeValue(val: TValue) -> Result<Void> {
@@ -105,33 +111,10 @@ public class TBinaryProtocol: TProtocol {
 
 //MARK:- parse
 
-func parseBinaryValue(type: TType, bytes: [UInt8]) -> Parser<TValue> {
+func parseBinaryValue(type: TType) -> Parser<TValue> {
   switch type {
   case TType.Bool: return fmapr(parseAnyUInt8()) { TValue._Bool($0 == 1) }
-//  case TType.Bool: { b in return b == 1 } <^> parseAnyUInt8()
-    
-//  case let ._Byte(x): return buildByte(x)
-//  case let ._Bool(x): return buildByte(x ? 1 : 0)
-//  case let ._Double(x): return buildDoubleBE(x)
-//  case let ._I16(x): return buildInt16BE(x)
-//  case let ._I32(x): return buildInt32BE(x)
-//  case let ._I64(x): return buildInt64BE(x)
-//  case let ._String(x):
-//    let utf8 = x.utf8
-//    return buildInt32BE(Int32(countElements(utf8))) <>
-//      buildBytes(Array(utf8))
-//  case let ._List(type, values):
-//    return buildThriftType(type) <>
-//      buildInt32BE(Int32(values.count)) <>
-//      buildBinaryList(values)
-//  case let ._Map(keyType, valueType, alist):
-//    return buildThriftType(keyType) <>
-//      buildThriftType(valueType) <>
-//      buildInt32BE(Int32(alist.count)) <>
-//      buildBinaryMap(alist)
-//  case let ._Struct(dict):
-//    return buildBinaryStruct(dict) <>
-//      buildByte(TType.Stop.toRaw())
+  //TODO: implement the remaining Thrift types
   default:
     fatalError("not yet implemented")
   }
